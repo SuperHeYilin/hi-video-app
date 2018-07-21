@@ -1,0 +1,37 @@
+.menu {
+	.menu-list {
+		@media (min-width: 992px) {
+			min-height: e("calc(100vh - 200px)");
+		}
+
+		.menu-bar {
+			border: 0
+		}
+
+		.draggable-tree {
+			:global {
+				li {
+					margin: auto;
+				}
+				
+				.ant-tree-switcher {
+					line-height: 40px;
+					height: 40px;
+				}
+				
+				.ant-tree-node-content-wrapper {
+					width: calc(100% - 5px);
+					line-height: 40px;
+					height: 40px;
+					font-size: 16px;
+				}
+			}
+		}
+	}
+
+	.menu-info {
+		@media (min-width: 992px) {
+			min-height: e("calc(100vh - 200px)");
+		}
+	}
+}

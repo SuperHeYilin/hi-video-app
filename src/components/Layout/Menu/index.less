@@ -1,0 +1,166 @@
+@import "../../vars.less";
+.siderMenu{
+  text-align: left;
+  background-color: transparent;
+  // z-index: 1050;
+  // overflow-y: auto;
+  // overflow-x: hidden;
+
+  :global{
+    .nav-text {
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .nav-subtext {
+      font-size: 14px;
+    }
+
+    .anticon {
+      font-size: 15px;
+    }
+
+    /****菜单样式****/
+    .trigger {
+      font-size: 18px;
+      line-height: 64px;
+      padding: 0 16px;
+      cursor: pointer;
+      transition: color .3s;
+    }
+
+    .trigger:hover {
+      color: #108ee9;
+    }
+
+    /****菜单样式****/
+  }
+}
+
+.head-menu{
+	//border-top: solid 1px #f8f8f8;
+	border-bottom: 0px;
+	line-height: 60px;
+	text-align: center;
+	background-color: transparent;
+  color: white;
+  overflow: hidden;
+
+	li {
+		top:auto !important;
+	}
+
+	:global{
+		.ant-menu-submenu-selected{
+			background-color: fade(#eeeeee, 30%);
+		}
+
+		.top-nav-icon {
+			margin-right: 5px;
+			margin-left: 5px;
+		}
+
+		.top-nav-text {
+		}
+
+		.nav-subtext {
+			font-size: 14px;
+		}
+
+		.anticon {
+			font-size: 15px;
+		}
+
+		/****菜单样式****/
+		.trigger {
+			font-size: 18px;
+			line-height: 64px;
+			padding: 0 16px;
+			cursor: pointer;
+			transition: color .3s;
+		}
+
+		.trigger:hover {
+			color: #108ee9;
+		}
+
+		/****菜单样式****/
+	}
+}
+
+.nav-menu{
+	//border-top: solid 1px #f8f8f8;
+	border-bottom: 0px;
+  line-height: 33px;
+  text-align: center;
+  overflow: hidden;
+  overflow-x: auto;
+
+	li {
+		top:auto !important;
+	}
+
+	:global{
+		.ant-menu-submenu-selected{
+			background-color: fade(#eeeeee, 30%);
+		}
+
+		.top-nav-text {
+			display: block;
+			font-size: 15px;
+			font-weight: 500;
+		}
+
+		.nav-subtext {
+			font-size: 14px;
+		}
+
+		.anticon {
+      font-size: 15px;
+      margin-right: 0px;
+		}
+
+		/****菜单样式****/
+		.trigger {
+			font-size: 18px;
+			line-height: 64px;
+			padding: 0 16px;
+			cursor: pointer;
+			transition: color .3s;
+		}
+
+		.trigger:hover {
+			color: #108ee9;
+		}
+
+		/****菜单样式****/
+	}
+}
+
+.popoverMenu {
+	height: auto;
+	max-height: e("calc(100vh - 96px)");
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+:global{
+	.ant-layout-sider-collapsed {
+		.anticon {
+      font-size: 18px;
+      margin-left: 8px;
+		}
+
+		.ant-menu-submenu-title{
+      font-size: 13px;
+		}
+
+		.nav-text {
+      display: none;
+		}
+
+		.ant-menu-submenu-vertical > .ant-menu-submenu-title:after {
+      display: none;
+		}
+	}
+}

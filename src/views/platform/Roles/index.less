@@ -1,0 +1,30 @@
+.role {
+    .role-list {
+        @media (min-width: 992px) {
+            min-height: e("calc(100vh - 200px)");
+        }
+
+        .role-bar {
+            border: 0
+        }
+
+        .draggable-tree {
+            :global {
+                li {
+                    line-height: 30px;
+                }
+
+                .ant-tree-node-content-wrapper {
+                    width: calc(100% - 18px);
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    .role-info {
+        @media (min-width: 992px) {
+            min-height: e("calc(100vh - 200px)");
+        }
+    }
+}

@@ -1,0 +1,41 @@
+.wechat-account {
+    .list {
+
+        .bar {
+            border: 0
+        }
+
+        .account-info {
+            padding-bottom: 10px;
+
+            .info-title {
+                font-size: 18px;
+                font-weight: 500;
+            }
+
+            .info-desc {
+                font-size: 18px;
+                font-weight: 400;
+                color:#0066CC;
+                cursor: pointer;
+                word-break:normal;
+                width:auto;
+                white-space:pre-wrap;
+                word-wrap:break-word;
+                overflow: hidden; 
+                text-overflow: ellipsis; 
+                -o-text-overflow: ellipsis;
+                white-space:nowrap;
+                display:block;
+            }
+        }
+
+        
+    }
+
+    .info {
+        @media (min-width: 992px) {
+            min-height: e("calc(100vh - 184px)");
+        }
+    }
+}

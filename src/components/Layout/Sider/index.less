@@ -1,0 +1,81 @@
+@import "../../vars.less";
+
+.sider {
+  background: #3e3e3e;
+  overflow: visible;
+  height: 100vh;
+  box-shadow: @shadow-1;
+  z-index: 520;
+  color: #999;
+
+  &.light {
+    background: #fff;
+
+    .switchtheme {
+      background: #fff;
+      border-top: solid 1px #f8f8f8;
+    }
+  } 
+
+  .logo {
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    cursor: pointer;
+    transition: @transition-ease-out;
+    overflow: hidden;
+
+    img {
+      width: 145px;
+      margin-right: 8px;
+      transition: @transition-ease-out;
+    }
+
+    span {
+      vertical-align: text-bottom;
+      font-size: 16px;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+    .anticon {
+      transition: @transition-ease-out;
+    }
+  }
+
+  .switchtheme {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 48px;
+    background-color: @dark-half;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px 0 24px;
+    overflow: hidden;
+    z-index: 1000;
+
+    span {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    :global {
+      .anticon {
+        min-width: 14px;
+        margin-right: 8px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.topSider{
+  margin: auto;
+  width: 100%;
+  background-color: white !important;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+

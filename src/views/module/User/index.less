@@ -1,0 +1,112 @@
+@import "../../../components/vars.less";
+
+.numberCard {
+    padding: 32px;
+    margin-bottom: 24px;
+    cursor: pointer;
+  
+    .iconImg {
+      display: inline-block;
+      width: 54px;
+      height: 54px;
+      float: left;
+      font-style: normal;
+      vertical-align: baseline;
+      text-align: center;
+      text-transform: none;
+      line-height: 1;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  
+    .iconWarp {
+      font-size: 54px;
+      float: left;
+    }
+  
+    .content {
+      width: 100%;
+      padding-left: 78px;
+  
+      .title {
+        line-height: 16px;
+        font-size: 16px;
+        margin-bottom: 8px;
+        height: 16px;
+        .text-overflow();
+      }
+  
+      .number {
+        line-height: 32px;
+        font-size: 24px;
+        height: 32px;
+        .text-overflow();
+      }
+    }
+}
+
+.profile {
+    .white-box {
+        background: #ffffff;
+        padding: 25px;
+        margin-bottom: 15px;
+        border: 1px solid #9675ce;
+    }
+
+    .text-white {
+        color: #ffffff;
+        font-size: 20px;
+    }
+
+    .text-purple {
+        color: #9675ce;
+        font-size: 16px;
+    }
+
+    .text-blue {
+        color: #02bec9;
+        font-size: 16px;
+    }
+
+    .text-danger {
+        color: #fb9678;
+        font-size: 16px;
+    }
+
+    .user-bg {
+        margin: -25px;
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+
+        .overlay-box {
+            background: #9675ce;
+            opacity: 0.9;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            height: 100%;
+            text-align: center;
+
+            .user-content {
+                padding: 15px;
+            }
+        }
+
+        .thumb-lg {
+            height: 88px;
+            width: 88px;
+            border-radius: 50%;
+        }
+    }
+
+    .user-btm-box {
+        padding: 40px 0 10px;
+        clear: both;
+        overflow: hidden;
+        text-align: center;
+    }
+}
+

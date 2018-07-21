@@ -1,0 +1,45 @@
+
+.coverCardList {
+  margin-bottom: -24px;
+
+  .card {
+    :global {
+      .ant-card-meta-title {
+        margin-bottom: 4px;
+        & > a {
+        }
+      }
+      .ant-card-meta-description {
+        height: 44px;
+        line-height: 22px;
+        overflow: hidden;
+      }
+    }
+
+    &:hover {
+      :global {
+        .ant-card-meta-title > a {
+        }
+      }
+    }
+  }
+
+  .cardItemContent {
+    display: flex;
+    margin-top: 16px;
+    margin-bottom: -4px;
+    line-height: 20px;
+    & > span {
+      flex: 1;
+      font-size: 12px;
+    }
+    .btn {
+    }
+    .avatarList {
+      flex: 0 1 auto;
+    }
+  }
+  .cardList {
+    margin-top: 24px;
+  }
+}

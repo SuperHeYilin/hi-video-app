@@ -1,0 +1,66 @@
+.authority {
+    .role-list {
+
+        @media (min-width: 992px) {
+            min-height: e("calc(100vh - 260px)");
+        }
+
+
+        .role-bar {
+            border: 0
+        }
+
+        .draggable-tree {
+            :global {
+                li {
+                    line-height: 30px;
+                }
+
+                .ant-tree-node-content-wrapper {
+                    width: calc(100% - 60px);
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    .menu-list {
+
+        .menu-bar {
+            border: 0
+        }
+
+        .draggable-tree {
+            :global {
+                li {
+                    line-height: 30px;
+                }
+
+                .ant-tree-node-content-wrapper {
+                    width: calc(100%-5px);
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    .tab {
+        :global {
+            .ant-tabs-bar {
+                margin-bottom: 0
+            }
+
+            .ant-tabs-nav-container {
+                line-height: 32px;
+                height: 48px;
+            }
+        }
+    }
+
+    .authority-info {
+        padding: 0;
+        @media (min-width: 992px) {
+            min-height: e("calc(100vh - 260px)");
+        }
+    }
+}

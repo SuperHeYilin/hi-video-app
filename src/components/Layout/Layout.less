@@ -1,0 +1,224 @@
+@import "../vars.less";
+@transition:all 0.2s ease;
+
+/****布局样式****/
+.layout {
+  position: relative;
+  background: rgb(248, 248, 248);
+  overflow: hidden;
+
+  @media(min-width: @screen-lg-min) {
+    .main-resize{
+      padding-right: e("calc((100% - 1400px) / 2 + 30px)");
+      padding-left: e("calc((100% - 1400px) / 2 + 30px)");
+      transition: @transition;
+      -moz-transition: @transition;
+      -webkit-transition: @transition;
+      -o-transition: @transition;
+    }
+  }
+  @media(max-width: @screen-md-max) and (min-width: @screen-md-min){
+    .main-resize{
+      padding-right: e("calc((100% - 992px) / 2 + 30px)");
+      padding-left: e("calc((100% - 992px) / 2 + 30px)");
+      transition: @transition;
+      -moz-transition: @transition;
+      -webkit-transition: @transition;
+      -o-transition: @transition;
+    }
+  }
+  @media(max-width: @screen-sm-max) and (min-width: @screen-sm) {
+    .main-resize{
+      padding-right: 30px;
+      padding-left: 30px;
+      transition: @transition;
+      -moz-transition: @transition;
+      -webkit-transition: @transition;
+      -o-transition: @transition;
+    }
+  }
+
+  @media(min-width: @screen-lg-min) {
+    .topSider-resize{
+      padding-right: e("calc((100% - 1400px) / 2 + 30px)");
+      padding-left: e("calc((100% - 1400px) / 2 + 30px)");
+      transition: @transition;
+      -moz-transition: @transition;
+      -webkit-transition: @transition;
+      -o-transition: @transition;
+    }
+  }
+  @media(max-width: @screen-md-max) and (min-width: @screen-md-min){
+    .topSider-resize{
+      padding-right: e("calc((100% - 992px) / 2 + 30px)");
+      padding-left: e("calc((100% - 992px) / 2 + 30px)");
+      transition: @transition;
+      -moz-transition: @transition;
+      -webkit-transition: @transition;
+      -o-transition: @transition;
+    }
+  }
+  @media(max-width: @screen-sm-max) and (min-width: @screen-sm) {
+    .topSider-resize{
+      padding-right: 30px;
+      padding-left: 30px;
+      transition: @transition;
+      -moz-transition: @transition;
+      -webkit-transition: @transition;
+      -o-transition: @transition;
+    }
+  }
+
+  @media(min-width: @screen-lg-min) {
+    .header-resize{
+      padding-right: e("calc((100% - 1400px) / 2 + 30px)");
+      padding-left: e("calc((100% - 1400px) / 2 + 30px)");
+      transition: @transition;
+      -moz-transition: @transition;
+      -webkit-transition: @transition;
+      -o-transition: @transition;
+    }
+  }
+  @media(max-width: @screen-md-max) and (min-width: @screen-md-min){
+    .header-resize{
+      padding-right: e("calc((100% - 992px) / 2 + 30px)");
+      padding-left: e("calc((100% - 992px) / 2 + 30px)");
+      transition: @transition;
+      -moz-transition: @transition;
+      -webkit-transition: @transition;
+      -o-transition: @transition;
+    }
+  }
+  @media(max-width: @screen-sm-max) and (min-width: @screen-sm) {
+    .header-resize{
+      padding-right: 30px;
+      padding-left: 30px;
+      transition: @transition;
+      -moz-transition: @transition;
+      -webkit-transition: @transition;
+      -o-transition: @transition;
+    }
+  }
+
+  .main {
+    //transition: @transition-ease-out;
+    //box-shadow: 1px 0px 50px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    &.affix-head {
+      //overflow: auto;
+      margin-top: 60px;
+    }
+
+    &.affix-head-nav {
+      //overflow: auto;
+      margin-top: 127px;
+    }
+
+    &.affix-head-leftsider {
+      //margin-top: 60px;
+    }
+
+    &.affix-head-popover {
+      //overflow: auto;
+      margin-top: 60px;
+    }
+
+    &.min-height-head {
+      min-height: e("calc(100vh - 110px)");
+    }
+
+    &.min-height-head-nav {
+      min-height: e("calc(100vh - 175px)");
+    }
+
+    &.min-height-leftsider {
+      overflow-y: auto;
+      height: e("calc(100vh - 108px)");
+    }
+
+    &.min-height-popover {
+      overflow-y: auto;
+      height: e("calc(100vh - 108px)");
+    }
+
+    :global {
+      .content-inner {
+        background: #fff;
+        padding: 24px;
+        box-shadow: @shadow-1;
+        min-height: e("calc(100vh - 184px)");
+      }
+    }
+
+    .content {
+      position: relative;
+      //padding: 0 20px;
+      margin-top: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
+  .fixheader {
+    position: fixed;
+    width: 100% !important;
+    z-index: 200;
+    top: 0px;
+  }
+
+  .fixsider {
+    position: fixed;
+    width: 100% !important;
+    top: 60px;
+    z-index: 200;
+  }
+}
+
+.ant-back-top-inner {
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  border-radius: 4px;
+  background-color: #1088e9;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+}
+
+:global .ant-back-top {
+  right: 60px;
+}
+
+.spin {
+  :global .ant-spin-container {
+    height: 100vh;
+  }
+}
+
+@media (max-width: 767px) {
+  .layout {
+    .main {
+      .container {
+        margin: 0;
+      }
+
+      .bread {
+        padding: 0 12px;
+      }
+
+      .content {
+        padding: 0 12px;
+      }
+
+      :global {
+        .content-inner {
+          padding: 12px;
+        }
+      }
+    }
+  }
+}
+/****布局样式****/
+
+
+

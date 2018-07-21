@@ -1,0 +1,122 @@
+.background {
+  background-color: rgb(40, 117, 113);
+  background-position-y:bottom;
+	background-image: url('../../public/imgs/login_bg.jpg');
+	background-repeat:no-repeat;
+  background-size:100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particles { 
+  width: 100%; 
+  height: 100%;
+  position: absolute;
+  background-color: #39f; 
+  background-size: cover; 
+  background-position: 50% 50%; 
+  background-repeat: no-repeat; 
+}
+
+.login_page {
+  overflow: hidden;
+
+  .wrapper-panel {
+    width: 360px;
+    height: 420px;
+    background-color: white;
+    margin: 0 auto;
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -180px;
+    overflow: hidden;
+
+    button {
+      width: 100%;
+      padding: 8px;
+      height: auto;
+      background-color: #4084e8;
+      vertical-align: middle;
+    }
+
+    .logo {
+      height: 60px;
+      max-width: 300px;
+    }
+
+    .register {
+      padding: 15px;
+      text-align: left;  
+
+      a {
+        font-size: 12px;
+        text-decoration: underline;
+      }
+    }
+
+    .recover {
+      padding: 15px;
+      text-align: right;  
+
+      a {
+        font-size: 12px;
+        text-decoration: underline;
+      }
+    }
+
+    .other_card {
+      margin-top: 30px;
+    }
+  }
+}
+
+.register_page {
+  overflow: hidden;
+
+  .wrapper-panel {
+    width: 360px;
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -180px;
+    overflow: hidden;
+
+    .logo {
+      margin-bottom: 10px;
+    }
+
+    .register_btn {
+      width: 100%;
+      padding: 8px;
+      height: auto;
+      vertical-align: middle;
+    }
+
+    .sms_btn{
+      border-radius: 4px;
+      text-align: center;
+      vertical-align: middle;
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    .login {
+      font-size: 16px;
+      text-decoration: underline;
+    }
+
+    .other_card {
+      margin-top: 30px;
+    }
+  }
+}
