@@ -60,6 +60,10 @@ export default class InitVideo extends Component {
       })
       .catch(err)
   }
+  //input改变
+  handleInputChange = (e) => {
+    this.setState({ disk: e.target.value })
+  }
   // 级联文件夹选择
   handleCascaderChange = (value) => {
     console.log("级联路径：", value)
@@ -73,27 +77,11 @@ export default class InitVideo extends Component {
   // 扫描注入
   handleInit = (e) => {
     const { disk, diskName } = this.state
-    if (diskName === "default") {
-      message.warn("文件夹别名不能为空")
-      return
-    }
-    api.post("/disk/init", { path: disk, diskName })
-      .then((value) => {
-        message.info("操作成功")
-        // console.log(value)
-        // this.setState({ pathInfo: value })
-        // this.fetch()
-      })
-      .catch(err)
-  }
-  // 更新缓存
-  handleUpdate = () => {
-    const { disk } = this.state
-    if (!disk) {
-      message.error("请输入绝对路径!")
-      return
-    }
-    api.post("/disk/update", { path: disk })
+    // if (diskName === "default") {
+    //   message.warn("文件夹别名不能为空")
+    //   return
+    // }
+    api.post("/video/init", { path: disk })
       .then((value) => {
         message.info("操作成功")
         // console.log(value)
@@ -130,7 +118,7 @@ export default class InitVideo extends Component {
         >
           <Row>
             <Col>
-              <Input value={disk} placeholder="文件夹路径" onChange={this.handleChoose} style={{ width: 220, marginRight: 24 }} size="large" />
+              <Input value={disk} placeholder="文件夹路径" onChange={this.handleInputChange} style={{ width: 220, marginRight: 24 }} size="large" />
               <Cascader options={options} onChange={this.handleCascaderChange} changeOnSelect placeholder="请选择类型" style={{ width: 220 }} size="large" />
               <RadioGroup onChange={this.handleRadioChange} value={initType} size="large" style={{marginLeft: 24, marginRight: 24}} >
                 <Radio value={1}>初始化导入</Radio>
