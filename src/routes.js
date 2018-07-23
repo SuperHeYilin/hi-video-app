@@ -19,6 +19,8 @@ import Marketing from './views/module/Marketing'
 import { App, User, Roles, Menus, Authority, Login, RopWechatAccount, RopAlipayAccount, UserCenter } from './views'
 import CheckOrder from './views/module/CheckOrder'
 import WechatUser from './views/rop/WechatUser'
+// 视频初始化导入
+import InitVideo from './views/module/InitVideo'
 
 const Routers = ({ history }) => {
 	return (
@@ -53,9 +55,9 @@ const Routers = ({ history }) => {
               <Route path="/module/orderrefund/details/:id" component={OrderRefundDetails} />
               <Route path="/module/marketing" component={Marketing} />
               <Route path="/module/checkorder" component={CheckOrder} />
-              {/* rop开发平台功能模块 */}
+              {/* 视频初始化导入 */}
               <Route path="/rop/alipayaccount" component={RopAlipayAccount} />
-              <Route path="/rop/wechataccount" component={RopWechatAccount} />
+              <Route path="/init/video" component={InitVideo} />
               <Route path="*" component={NotFound} />
             </App>
 					)
