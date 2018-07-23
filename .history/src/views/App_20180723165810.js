@@ -39,7 +39,7 @@ class App extends Component {
       <Layout className={classnames(layStyles.layout)}>
         <Helmet>
           <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
-          <title>嗨视频HiVideo</title>
+          <title>嗨视频HiVideo123</title>
           <link rel="icon" href={config.logoSrc} type="image/x-icon" />
           {config.iconFontUrl ? <script src={config.iconFontUrl} /> : ''}
         </Helmet>
