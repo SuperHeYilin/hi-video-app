@@ -19,6 +19,8 @@ import Marketing from './views/module/Marketing'
 import { App, User, Roles, Menus, Authority, Login, RopWechatAccount, RopAlipayAccount, UserCenter } from './views'
 import CheckOrder from './views/module/CheckOrder'
 import WechatUser from './views/rop/WechatUser'
+// 重复验证
+import RepeatVideo from './views/module/RepeatVideo'
 // 视频初始化导入
 import InitVideo from './views/module/InitVideo'
 
@@ -55,6 +57,8 @@ const Routers = ({ history }) => {
               <Route path="/module/orderrefund/details/:id" component={OrderRefundDetails} />
               <Route path="/module/marketing" component={Marketing} />
               <Route path="/module/checkorder" component={CheckOrder} />
+              {/* 重复验证 */}
+              <Route path="/repeat/video" component={RepeatVideo} />
               {/* 视频初始化导入 */}
               <Route path="/rop/alipayaccount" component={RopAlipayAccount} />
               <Route path="/init/video" component={InitVideo} />
