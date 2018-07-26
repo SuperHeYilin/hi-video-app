@@ -4,6 +4,9 @@ import { api, err } from '../../../utils'
 
 const { Meta } = Card
 
+/**
+ * 文件重复对比 删除
+ */
 export default class RepeatVideo extends Component {
   constructor(props) {
     super(props)
@@ -38,7 +41,6 @@ export default class RepeatVideo extends Component {
     firstRepeat.forEach((v, k) => {
       ids.push(v.id)
     })
-    console.log(ids.join(","))
     api.post("/file/open", { ids: ids.join(",")})
       .catch(err)
   }
@@ -60,7 +62,6 @@ export default class RepeatVideo extends Component {
         tempIds.splice(index, 1)
       }
     }
-    console.log("gg:", tempIds)
     this.setState({ deleteIds: tempIds })
   }
   // 模态框
