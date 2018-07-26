@@ -23,6 +23,8 @@ import WechatUser from './views/rop/WechatUser'
 import RepeatVideo from './views/module/RepeatVideo'
 // 视频初始化导入
 import InitVideo from './views/module/InitVideo'
+// 基本配置
+import HiConfig from './views/platform/HiConfig'
 
 const Routers = ({ history }) => {
 	return (
@@ -40,6 +42,7 @@ const Routers = ({ history }) => {
               <Route path="/platform/menus" component={Menus} />
               <Route path="/platform/authority" component={Authority} />
               <Route path="/platform/usercenter/:key?" component={UserCenter} />
+              <Route path="/plantform/config" component={HiConfig} />
 
               {/* module模块功能 */}
               <Route path="/module/wechatuser" component={WechatUser} />
