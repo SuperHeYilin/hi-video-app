@@ -10,7 +10,6 @@ import GoodsClassification from './views/module/GoodsClassification'
 import Store from './views/module/Store'
 import StoreGoods from './views/module/Store/StoreGoods'
 import Order from './views/module/Order'
-import Address from './views/module/Address'
 import Dashboard from './views/module/Dashboard'
 import OrderRefund from './views/module/OrderRefund'
 import Orderdetails from './views/module/OrderDetails'
@@ -25,6 +24,11 @@ import RepeatVideo from './views/module/RepeatVideo'
 import InitVideo from './views/module/InitVideo'
 // 基本配置
 import HiConfig from './views/platform/HiConfig'
+// 视频罗列
+import VideoList from './views/module/VideoList'
+import VideoDetail from './views/module/VideoDetail'
+
+import VideoType from './views/module/VideoType'
 
 const Routers = ({ history }) => {
 	return (
@@ -53,13 +57,17 @@ const Routers = ({ history }) => {
               <Route path="/module/store" exact component={Store} />
               <Route path="/module/store/goods/:id?" component={StoreGoods} />
               <Route path="/module/order/:tab?" exact component={Order} />
-              <Route path="/module/address" component={Address} />
               <Route path="/module/analyze" component={Dashboard} />
               <Route path="/module/refund/order" exact component={OrderRefund} />
               <Route path="/module/orderdetails/:id/:tab?" component={Orderdetails} />
               <Route path="/module/orderrefund/details/:id" component={OrderRefundDetails} />
               <Route path="/module/marketing" component={Marketing} />
               <Route path="/module/checkorder" component={CheckOrder} />
+              {/* 视频罗列 */}
+              <Route path="/module/video-list" component={VideoList} />
+              {/* 视频详情 */}
+              <Route path="/module/video/type" component={VideoType} />
+              <Route path="/module/video/detail/:id" component={VideoDetail} />
               {/* 重复验证 */}
               <Route path="/repeat/video" component={RepeatVideo} />
               {/* 视频初始化导入 */}

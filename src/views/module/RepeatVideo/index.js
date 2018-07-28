@@ -84,7 +84,9 @@ export default class RepeatVideo extends Component {
     const { deleteIds } = this.state
     api.delete("/file/delete", {ids: deleteIds.join(",")})
       .then((value) => {
-        message.info("删除成功!")
+        if (value) {
+          message.info("删除成功!")
+        }
         this.fetch()
         this.setState({
           visible: false,
