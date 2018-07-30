@@ -80,7 +80,7 @@ class VideoList extends Component {
   }
 
   render() {
-    const { keyWord, current, totalCount, pageData, pageSize } = this.state
+    const { keyWord, current, totalCount, pageData = [], pageSize } = this.state
     return (
       <div>
         <Card>
@@ -127,7 +127,8 @@ class VideoList extends Component {
                           src={v.imgPath}
                           height={260}
                           // width="100%"
-                          defaultSrc={`${require("../../../public/imgs/default" + Math.floor((Math.random() * 4) + 1) +".jpg")}`}
+                          // defaultSrc={`${require("../../../public/imgs/default" + Math.floor((Math.random() * 4) + 1) +".jpg")}`}
+                          defaultSrc={`${require("../../../public/imgs/default4.jpg")}`}
                           onClick={() => this.videoInfo(v.id)}
                         />
                       </div>

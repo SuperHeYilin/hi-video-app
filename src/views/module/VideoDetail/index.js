@@ -9,7 +9,7 @@ const { Meta } = Card
 const dataImg = [1,2,3,4,5,6]
 const CheckableTag = Tag.CheckableTag
 const Search = Input.Search
-const defaultImg = require('../../../public/imgs/default1.jpg')
+const defaultImg = require('../../../public/imgs/default4.jpg')
 
 class VideoDetail extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class VideoDetail extends Component {
     const { id = 0 } = match.params
     this.state = {
       id,
-      data: {}, // 视频简介
+      data: {}, // 视频简介 
       imgData: [], // 视频图片信息
       videoKey: [], // 视频名称关键字建议
       selectedTags: [], // 选中关键字

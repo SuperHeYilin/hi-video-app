@@ -62,7 +62,9 @@ export default class RepeatVideo extends Component {
         tempIds.splice(index, 1)
       }
     }
-    this.setState({ deleteIds: tempIds })
+    this.setState({
+      deleteIds: tempIds,
+     })
   }
   // 模态框
   showModal = () => {
@@ -90,6 +92,7 @@ export default class RepeatVideo extends Component {
         this.fetch()
         this.setState({
           visible: false,
+          deleteIds: [], // 清空id
         });
       })
       .catch(err)
@@ -166,15 +169,15 @@ export default class RepeatVideo extends Component {
             {
               firstRepeat.map((v, k) => {
                 return (
-                  <Col xs={{ span: 8 }} style={{ marginTop: 24 }} key={k}>
+                  <Col xs={{ span: 8 }} style={{ marginTop: 24 }} key={v.id}>
                     <Card
                       // style={{ width: 300 }}
                       cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
                       actions={[<Icon type="play-circle" onClick={() => this.handleOpen(v.id)} />,
                       <Icon type="edit" />,
                       <Icon type="ellipsis" />,
-                      <Switch checkedChildren="删除" unCheckedChildren="保留" onChange={(boolean) => this.handleChooseDelete(boolean, v.id)} />]}
-
+                      <Switch defaultChecked={false} checkedChildren="删除" unCheckedChildren="保留" onChange={(boolean) => this.handleChooseDelete(boolean, v.id)} />]}
+                      // <MySwitch handleChooseDelete={this.handleChooseDelete} id={v.id} />]}
                     >
                       <Meta
                         avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
