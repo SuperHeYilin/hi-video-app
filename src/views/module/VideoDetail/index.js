@@ -25,6 +25,7 @@ class VideoDetail extends Component {
       inputValue: "", // 提交关键字
       visible: false, // 模态框
       modalIMg: "", // 模态框图片地址
+      parentPath: "", // 父级目录
     }
   }
   componentDidMount = () => {
@@ -34,7 +35,7 @@ class VideoDetail extends Component {
   // 添加图片
   handleAddImg = () => {
     const { id } = this.state
-    api.post("/video/addron", { id })
+    api.post("/file/catch-img", {targetDirectory: "C:\\Users\\superHe\\Desktop\\hello\\test"})
       .then((result) => {
         message.success("正在获取，请赖心等待！")
       })
@@ -58,7 +59,30 @@ class VideoDetail extends Component {
       })
       .catch(err)
   }
-
+  // 修改父级目录
+  handleChangeParName = () => {
+    const { parentPath, data } = this.state
+    api.put("/file/parent-dir", { path: data.path, newName: parentPath })
+      .then((result) => {
+        if (result) {
+          message.info("修改成功！")
+          this.fetch()
+        }
+      })
+      .catch(err)
+  }
+  // 添加父级目录
+  handleAddParName = () => {
+    const { parentPath, data } = this.state
+    api.put("/file/parent-dir", { path: data.path, newName: parentPath })
+      .then((result) => {
+        if (result) {
+          message.info("修改成功！")
+          this.fetch()
+        }
+      })
+      .catch(err)
+  }
   // 查看图片
   handleLook = (src) => {
     this.setState({
@@ -94,18 +118,23 @@ class VideoDetail extends Component {
     console.log('You are interested in: ', nextSelectedTags);
     this.setState({ selectedTags: nextSelectedTags, inputValue: [...nextSelectedTags] });
   }
-
+  // 父级目录
+  handleParentChange = (e) => {
+    this.setState({ parentPath: e.target.value})
+  }
   render() {
-    const { data = {}, imgData, videoKey = [], selectedTags, inputValue, modalIMg } = this.state
+    const { data = {}, imgData, videoKey = [], selectedTags, inputValue, modalIMg, parentPath } = this.state
     return (
       <div className={styles.video}>
         <div className={styles.titleName}>{data.file_name}</div>
         <div className={styles.content}>
           <Row>
           <Col md={14} lg={16}>
-            <Img alt={`${data.file_name}`} src={data.img_path} defaultSrc={defaultImg} />
+            <div style={{ height: 400}}>
+              <Img alt={`${data.file_name}`} src={data.img_path} defaultSrc={defaultImg} />
+            </div>
           </Col>
-          <Col md={10} lg={8}>
+          <Col md={10} lg={8} style={{ borderLeft: "1px solid #E8E8E8", height: 400, padding: 25}}>
             <p>
               <span className={styles.weight}>识别码:</span>
               <span style={{ color: "#CC0000"}}>{data.id}</span>
@@ -184,20 +213,11 @@ class VideoDetail extends Component {
         <Card>
           <div>
             <Row>
-              <Col md={18} lg={16}>
-                <span style={{ fontSize: 16, fontWeight: 500 }}>父级目录:</span>
-                {videoKey.map(tag => (
-                  <CheckableTag
-                    key={tag}
-                    checked={selectedTags.indexOf(tag) > -1}
-                    onChange={checked => this.handleChange(tag, checked)}
-                  >
-                    {tag}
-                  </CheckableTag>
-                ))}
+              <Col md={6} lg={8} style={{ marginRight: 24 }}>
+                <Search value={parentPath} onChange={this.handleParentChange} enterButton="更改父级" onSearch={this.handleChangeParName} />
               </Col>
               <Col md={6} lg={8}>
-                <Search value={inputValue} onChange={this.handleInputChange} enterButton="更改父级" onSearch={this.handleChangeName} />
+                <Search value={parentPath} onChange={this.handleParentChange} enterButton="添加父级" onSearch={this.handleAddParName} />
               </Col>
             </Row>
           </div>
