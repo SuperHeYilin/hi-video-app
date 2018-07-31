@@ -27,7 +27,8 @@ class VideoDetail extends Component {
       visible: false, // 模态框
       modalIMg: "", // 模态框图片地址
       parentPath: "", // 父级目录
-      typeList: [], // 类型分类
+      typeList: [], // 类型分类key
+      typeNameList: [], // 类型分类name
       allTypeList: [], // 所以视频分类
     }
   }
@@ -99,7 +100,14 @@ class VideoDetail extends Component {
     api.get("/video/detail", { id })
       .then((result) => {
         console.log(result)
-        this.setState({ data: result.videoInfo, videoKey: result.videoKey, typeList: result.typeList, allTypeList: result.allTypeList })
+        this.setState({
+          data: result.videoInfo,
+          videoKey: result.videoKey,
+          typeList: result.typeList,
+          typeNameList: result.typeNameList,
+          allTypeList: result.allTypeList,
+          parentPath: result.parentPath,
+         })
       })
       .catch(err)
   }
@@ -125,14 +133,25 @@ class VideoDetail extends Component {
   handleParentChange = (e) => {
     this.setState({ parentPath: e.target.value })
   }
-  // 目录下拉
+  // 目录下拉选择
   handleTypeChange = (value) => {
-    this.setState({ typeList: value})
+    this.setState({ typeList: value })
     console.log(value)
   }
-
+  // 修改视频类型
+  handleChangeType = () => {
+    const { data, typeList } = this.state
+    api.put("/video", { id: data.id, videoType: typeList.join(",") })
+      .then((result) => {
+        if (result) {
+          message.success("修改成功!")
+          this.fetch()
+        }
+      })
+      .catch(err)
+  }
   render() {
-    const { data = {}, imgData, videoKey = [], selectedTags, inputValue, modalIMg, parentPath, typeList, allTypeList } = this.state
+    const { data = {}, imgData, videoKey = [], selectedTags, inputValue, modalIMg, parentPath, typeList, allTypeList, typeNameList } = this.state
     return (
       <div className={styles.video}>
         <div className={styles.titleName}>{data.file_name}</div>
@@ -158,16 +177,22 @@ class VideoDetail extends Component {
               </p>
               <p className={styles.weight}>
                 路径:
-            </p>
+              </p>
               <p>
                 {data.path}
               </p>
               <p className={styles.weight}>
                 类别:
-            </p>
+              </p>
               <div>
-                123123
-            </div>
+                {
+                  typeNameList.map((v, k) => {
+                    return (
+                      <span style={{ marginRight: 12, fontWeight: 500, cursor: "pointer" }}>{v}</span>
+                    )
+                  })
+                }
+              </div>
             </Col>
           </Row>
         </div>
@@ -194,8 +219,8 @@ class VideoDetail extends Component {
               <Col md={18} lg={16}>
                 <Select
                   mode="multiple"
-                  style={{ width: '100%' }}
-                  placeholder="Please select"
+                  style={{ width: '80%' }}
+                  placeholder="请选择类型"
                   value={typeList}
                   onChange={this.handleTypeChange}
                 >
@@ -205,6 +230,7 @@ class VideoDetail extends Component {
                     )
                   })}
                 </Select>
+                <Button onClick={this.handleChangeType} >修改类型</Button>
               </Col>
               <Col md={6} lg={8}>
                 <Button type="primary">播放</Button>
@@ -214,7 +240,6 @@ class VideoDetail extends Component {
             </Row>
           </div>
         </Card>
-
         <Card>
           <div>
             <Row>
@@ -282,10 +307,10 @@ class VideoDetail extends Component {
                           <Button.Group>
                             <Button type="primary">
                               <Icon type="retweet" />封面
-                              </Button>
+                            </Button>
                             <Button type="primary" onClick={() => this.handleLook(imgName)} >
                               查看
-                              </Button>
+                            </Button>
                             <Button type="primary">
                               删除<Icon type="close" />
                             </Button>
