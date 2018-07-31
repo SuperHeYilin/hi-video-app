@@ -27,8 +27,9 @@ import HiConfig from './views/platform/HiConfig'
 // 视频罗列
 import VideoList from './views/module/VideoList'
 import VideoDetail from './views/module/VideoDetail'
-
+// 视频类型
 import VideoType from './views/module/VideoType'
+import VideoTypeManage from './views/module/VideoTypeManage'
 
 const Routers = ({ history }) => {
 	return (
@@ -65,8 +66,10 @@ const Routers = ({ history }) => {
               <Route path="/module/checkorder" component={CheckOrder} />
               {/* 视频罗列 */}
               <Route path="/module/video-list" component={VideoList} />
-              {/* 视频详情 */}
+              {/* 视频类型 */}
               <Route path="/module/video/type" component={VideoType} />
+              <Route path="/module/video/type-manage" component={VideoTypeManage} />
+              {/* 视频详情 */}
               <Route path="/module/video/detail/:id" component={VideoDetail} />
               {/* 重复验证 */}
               <Route path="/repeat/video" component={RepeatVideo} />

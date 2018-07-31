@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Card, Button, Row, Col, Icon, message, Tag, Input, Modal } from 'antd'
+import { Card, Button, Row, Col, Icon, message, Tag, Input, Modal, Select } from 'antd'
 import { api, err } from '../../../utils'
 import Img from '../ImgKit'
 
 import styles from './index.less'
 
 const { Meta } = Card
-const dataImg = [1,2,3,4,5,6]
+const dataImg = [1, 2, 3, 4, 5, 6]
 const CheckableTag = Tag.CheckableTag
+const Option = Select.Option
 const Search = Input.Search
 const defaultImg = require('../../../public/imgs/default4.jpg')
 
@@ -26,6 +27,8 @@ class VideoDetail extends Component {
       visible: false, // 模态框
       modalIMg: "", // 模态框图片地址
       parentPath: "", // 父级目录
+      typeList: [], // 类型分类
+      allTypeList: [], // 所以视频分类
     }
   }
   componentDidMount = () => {
@@ -35,7 +38,7 @@ class VideoDetail extends Component {
   // 添加图片
   handleAddImg = () => {
     const { id } = this.state
-    api.post("/file/catch-img", {targetDirectory: "C:\\Users\\superHe\\Desktop\\hello\\test"})
+    api.post("/file/catch-img", { targetDirectory: "C:\\Users\\superHe\\Desktop\\hello\\test" })
       .then((result) => {
         message.success("正在获取，请赖心等待！")
       })
@@ -43,12 +46,12 @@ class VideoDetail extends Component {
   }
   // 抓取图片
   handleScannerImg = () => {
-    
+
   }
-  
+
   // 输入框事件
   handleInputChange = (e) => {
-    this.setState({ inputValue: e.target.value})
+    this.setState({ inputValue: e.target.value })
   }
   // 更改文件名
   handleChangeName = (value) => {
@@ -96,7 +99,7 @@ class VideoDetail extends Component {
     api.get("/video/detail", { id })
       .then((result) => {
         console.log(result)
-        this.setState({ data: result.videoInfo, videoKey: result.videoKey })
+        this.setState({ data: result.videoInfo, videoKey: result.videoKey, typeList: result.typeList, allTypeList: result.allTypeList })
       })
       .catch(err)
   }
@@ -113,53 +116,59 @@ class VideoDetail extends Component {
   handleChange(tag, checked) {
     const { selectedTags } = this.state;
     const nextSelectedTags = checked ?
-            [...selectedTags, tag] :
-            selectedTags.filter(t => t !== tag);
+      [...selectedTags, tag] :
+      selectedTags.filter(t => t !== tag);
     console.log('You are interested in: ', nextSelectedTags);
     this.setState({ selectedTags: nextSelectedTags, inputValue: [...nextSelectedTags] });
   }
   // 父级目录
   handleParentChange = (e) => {
-    this.setState({ parentPath: e.target.value})
+    this.setState({ parentPath: e.target.value })
   }
+  // 目录下拉
+  handleTypeChange = (value) => {
+    this.setState({ typeList: value})
+    console.log(value)
+  }
+
   render() {
-    const { data = {}, imgData, videoKey = [], selectedTags, inputValue, modalIMg, parentPath } = this.state
+    const { data = {}, imgData, videoKey = [], selectedTags, inputValue, modalIMg, parentPath, typeList, allTypeList } = this.state
     return (
       <div className={styles.video}>
         <div className={styles.titleName}>{data.file_name}</div>
         <div className={styles.content}>
           <Row>
-          <Col md={14} lg={16}>
-            <div style={{ height: 400}}>
-              <Img alt={`${data.file_name}`} src={data.img_path} defaultSrc={defaultImg} />
+            <Col md={14} lg={16}>
+              <div style={{ height: 400 }}>
+                <Img alt={`${data.file_name}`} src={data.img_path} defaultSrc={defaultImg} />
+              </div>
+            </Col>
+            <Col md={10} lg={8} style={{ borderLeft: "1px solid #E8E8E8", height: 400, padding: 25 }}>
+              <p>
+                <span className={styles.weight}>识别码:</span>
+                <span style={{ color: "#CC0000" }}>{data.id}</span>
+              </p>
+              <p>
+                <span className={styles.weight}>等级分:</span>
+                <span>{data.score}</span>
+              </p>
+              <p>
+                <span className={styles.weight}>文件大小:</span>
+                <span>{data.size_mb} MB</span>
+              </p>
+              <p className={styles.weight}>
+                路径:
+            </p>
+              <p>
+                {data.path}
+              </p>
+              <p className={styles.weight}>
+                类别:
+            </p>
+              <div>
+                123123
             </div>
-          </Col>
-          <Col md={10} lg={8} style={{ borderLeft: "1px solid #E8E8E8", height: 400, padding: 25}}>
-            <p>
-              <span className={styles.weight}>识别码:</span>
-              <span style={{ color: "#CC0000"}}>{data.id}</span>
-            </p>
-            <p>
-              <span className={styles.weight}>等级分:</span>
-              <span>{data.score}</span>
-            </p>
-            <p>
-              <span className={styles.weight}>文件大小:</span>
-              <span>{data.size_mb} MB</span>
-            </p>
-            <p className={styles.weight}>
-              路径:
-            </p>
-            <p>
-              {data.path}
-            </p>
-            <p className={styles.weight}>
-              类别:
-            </p>
-            <div>
-              123123
-            </div>
-          </Col>
+            </Col>
           </Row>
         </div>
         <Modal
@@ -181,11 +190,28 @@ class VideoDetail extends Component {
         </Modal>
         <Card>
           <div>
-            <div style={{ float: "right" }}>
-              <Button type="primary">播放</Button>
-              <Button style={{ marginLeft: 12 }}>评比</Button>
-              <Button type="danger" style={{ marginLeft: 12 }}>删除</Button>
-            </div>
+            <Row>
+              <Col md={18} lg={16}>
+                <Select
+                  mode="multiple"
+                  style={{ width: '100%' }}
+                  placeholder="Please select"
+                  value={typeList}
+                  onChange={this.handleTypeChange}
+                >
+                  {allTypeList.map((v, k) => {
+                    return (
+                      <Option key={v.key_name}>{v.name}</Option>
+                    )
+                  })}
+                </Select>
+              </Col>
+              <Col md={6} lg={8}>
+                <Button type="primary">播放</Button>
+                <Button style={{ marginLeft: 12 }}>评比</Button>
+                <Button type="danger" style={{ marginLeft: 12 }}>删除</Button>
+              </Col>
+            </Row>
           </div>
         </Card>
 
@@ -232,44 +258,44 @@ class VideoDetail extends Component {
         >
           <Row gutter={12} >
             <div style={{ marginTop: 36 }}>
-                {
-                  imgData.map((value, key) => {
-                    let imgName
-                    if (value) {
-                      imgName = value.imgName
-                    } else {
-                      imgName = ""
-                    }
-                    // console.log(imgName)
-                    return (
-                      <Col xs={12} sm={8} md={6} lg={6} xl={6} key={key}>
-                        <Card
-                          hoverable
-                          // style={{ width: 240 }}
-                          cover={
-                            <div style={{ textAlign: "center" }}>
-                              <Img alt="t" src={imgName} defaultSrc={defaultImg} width="100%" />
-                            </div>
-                          }
-                        >
+              {
+                imgData.map((value, key) => {
+                  let imgName
+                  if (value) {
+                    imgName = value.imgName
+                  } else {
+                    imgName = ""
+                  }
+                  // console.log(imgName)
+                  return (
+                    <Col xs={12} sm={8} md={6} lg={6} xl={6} key={key}>
+                      <Card
+                        hoverable
+                        // style={{ width: 240 }}
+                        cover={
                           <div style={{ textAlign: "center" }}>
-                            <Button.Group>
-                              <Button type="primary">
-                                <Icon type="retweet" />封面
-                              </Button>
-                              <Button type="primary" onClick={() => this.handleLook(imgName)} >
-                                查看
-                              </Button>
-                              <Button type="primary">
-                                删除<Icon type="close" />
-                              </Button>
-                            </Button.Group>
+                            <Img alt="t" src={imgName} defaultSrc={defaultImg} width="100%" />
                           </div>
-                        </Card>
-                      </Col>
-                    )
-                  })
-                }
+                        }
+                      >
+                        <div style={{ textAlign: "center" }}>
+                          <Button.Group>
+                            <Button type="primary">
+                              <Icon type="retweet" />封面
+                              </Button>
+                            <Button type="primary" onClick={() => this.handleLook(imgName)} >
+                              查看
+                              </Button>
+                            <Button type="primary">
+                              删除<Icon type="close" />
+                            </Button>
+                          </Button.Group>
+                        </div>
+                      </Card>
+                    </Col>
+                  )
+                })
+              }
             </div>
           </Row>
         </Card>
