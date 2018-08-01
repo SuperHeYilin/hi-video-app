@@ -30,6 +30,8 @@ import VideoDetail from './views/module/VideoDetail'
 // 视频类型
 import VideoType from './views/module/VideoType'
 import VideoTypeManage from './views/module/VideoTypeManage'
+// 视频pk
+import VideoPK from './views/module/VideoPK'
 
 const Routers = ({ history }) => {
 	return (
@@ -76,6 +78,9 @@ const Routers = ({ history }) => {
               {/* 视频初始化导入 */}
               <Route path="/rop/alipayaccount" component={RopAlipayAccount} />
               <Route path="/init/video" component={InitVideo} />
+              {/* 视频pk */}
+              <Route path="/module/video/pk" component={VideoPK} />
+
               <Route path="*" component={NotFound} />
             </App>
 					)
